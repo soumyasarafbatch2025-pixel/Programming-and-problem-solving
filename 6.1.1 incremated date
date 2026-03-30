@@ -1,0 +1,27 @@
+day = int(input())
+month = int(input())
+year = int(input())
+
+is_leap = (year % 400 == 0) or (year % 4 == 0 and year % 100 != 0)
+
+if month == 2:
+    month_days = 29 if is_leap else 28
+elif month in [4, 6, 9, 11]:
+    month_days = 30
+else:
+    month_days = 31
+
+if year <= 0 or month < 1 or month > 12 or day < 1 or day > month_days:
+    print("Invalid Date")
+else:
+    if day < month_days:
+        day += 1
+    else:
+        day = 1
+        if month == 12:
+            month = 1
+            year += 1
+        else:
+            month += 1
+
+    print(f"{day:02d}-{month:02d}-{year}")
